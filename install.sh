@@ -1,5 +1,4 @@
 #!/bin/bash
-set x
 NETRC=~/.netrc
 `which git > /dev/null`
 
@@ -11,7 +10,6 @@ fi
 echo 'Please enter your github username:'
 read GITHUB_USERNAME
 GITHUB_USER_ID=`curl -s "https://api.github.com/users/${GITHUB_USERNAME}" | grep '"id"' | sed 's/[^0-9]*//g'`
-echo ${GITHUB_USER_ID}
 
 if [ -f ${NETRC} ]; then
   if grep -q flatiron-push ${NETRC}; then
