@@ -1,6 +1,6 @@
 #!/bin/bash
 set x
-NETRC=~/.ian_dev_test
+NETRC=~/.netrc
 `which git > /dev/null`
 
 if [ $? != 0 ]; then
@@ -17,15 +17,13 @@ if [ -f ${NETRC} ]; then
   if grep -q flatiron-push ${NETRC}; then
     NETRC_NAME=`grep -A1 flatiron-push ${NETRC} | grep login | awk '{print $2}'`
     if [[ ${GITHUB_USERNAME} == ${NETRC_NAME} ]]; then
-      echo "You're all set! "
+      echo "You're all set - setup complete!"
       exit 0
     else
-      echo 'not a match - updating...'
       sed -i '' -E '/flatiron-push/{N;N;d;}' ${NETRC}
       echo -e "machine flatiron-push\n  login ${GITHUB_USERNAME}\n  password ${GITHUB_USER_ID}" >> ${NETRC}
     fi
   else
-    echo 'push not found'
     echo -e "machine flatiron-push\n  login ${GITHUB_USERNAME}\n  password ${GITHUB_USER_ID}" >> ${NETRC}
   fi
 else
@@ -33,6 +31,4 @@ else
   chmod 600 ${NETRC}
   chown ${USER} ${NETRC}
 fi
-
-
-
+echo "You're all set - setup complete!"
