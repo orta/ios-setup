@@ -34,7 +34,5 @@ else
   chown ${USER} ${NETRC}
 fi
 
-"$NETRC"
-
 
 
