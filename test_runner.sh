@@ -3,7 +3,6 @@ set -e
 SERVICE_URL='http://ironbroker.flatironschool.com'
 SERVICE_ENDPOINT='/e/flatiron_xcpretty'
 CURR_DIR="$2"
-echo ${CURR_DIR}
 NETRC=~/.netrc
 
 if [ -f ${NETRC} ]; then
@@ -28,4 +27,4 @@ REPO_NAME=`echo ${CURR_DIR} | awk -F'/' '{print $NF}'`
 cd ${CURR_DIR}
 
 
-curl -H "Content-Type: application/json" -X POST --data "{ \"username\": \"${GITHUB_USERNAME}\", \"github_user_id\": \"${GITHUB_USER_ID}\", \"repo_name\": \"${REPO_NAME}\", \"build\": { \"test_suite\": [{\"framework\": \"xcpretty\", \"formatted_output\": [], \"duration\": 0.0, \"build_output\": []}]}, \"total_count\": ${TOTAL_COUNT}, \"passing_count\": ${PASSING_COUNT}, \"failure_count\": ${FAILURE_COUNT}}" http://requestb.in/1d61l631
+curl -H "Content-Type: application/json" -X POST --data "{ \"username\": \"${GITHUB_USERNAME}\", \"github_user_id\": \"${GITHUB_USER_ID}\", \"repo_name\": \"${REPO_NAME}\", \"build\": { \"test_suite\": [{\"framework\": \"xcpretty\", \"formatted_output\": [], \"duration\": 0.0, \"build_output\": []}]}, \"total_count\": ${TOTAL_COUNT}, \"passing_count\": ${PASSING_COUNT}, \"failure_count\": ${FAILURE_COUNT}}" "${SERVICE_URL}${SERVICE_ENDPOINT}"

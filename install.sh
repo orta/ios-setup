@@ -11,6 +11,11 @@ echo 'Please enter your github username:'
 read GITHUB_USERNAME
 GITHUB_USER_ID=`curl -s "https://api.github.com/users/${GITHUB_USERNAME}" | grep '"id"' | sed 's/[^0-9]*//g'`
 
+if [ -z "${GITHUB_USER_ID}" ]; then
+  echo 'Github Username Not Found. Please Try again.'
+  exit 1
+fi
+
 if [ -f ${NETRC} ]; then
   if grep -q flatiron-push ${NETRC}; then
     NETRC_NAME=`grep -A1 flatiron-push ${NETRC} | grep login | awk '{print $2}'`
