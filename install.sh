@@ -3,7 +3,7 @@ NETRC=~/.netrc
 `which git > /dev/null`
 
 if [ $? != 0 ]; then
-  echo 'Please install XCode Command Line Tools and try again. You can do this by running `gcc` in your terminal.'
+  echo 'Please install Xcode Command Line Tools and try again. You can do this by running `gcc` in your terminal.'
   exit 1
 fi
 
